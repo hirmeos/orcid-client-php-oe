@@ -1,0 +1,23 @@
+{
+    "name": "vendor/orcid-client-oe",
+    "description": "Orcid Member API PHP Client",
+    "authors": [
+        {
+            "name": "Alexandre Vinogradov",
+            "email": "alexandre.vinogradov@openedition.org"
+        }
+    ],
+     "type": "library",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=5.6.29",
+        "guzzlehttp/psr7": "dev-master",
+        "psr/http-message": "dev-master"      
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenEdition\\OrcidClient\\":        "src"
+        }
+    }
+    
+}
