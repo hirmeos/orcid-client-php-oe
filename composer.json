@@ -1,5 +1,5 @@
 {
-    "name": "vendor/orcid-client-oe",
+    "name": "openedition/orcid-client",
     "description": "Orcid Member API PHP Client",
     "authors": [
         {
