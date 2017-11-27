@@ -1,8 +1,7 @@
 # Open Edition Orcid Member API PHP Client
 
 You'll need working Orcid Member Api Credrentials in order to connect to the API which you can obtain at https://orcid.org/
-Make sure they are defined in src/OrcidConfiguration.php as "CLIENT_ID" and "CLIENT_SECRET" .
-The endpoints defined in this configuration file are those of the Orcid Api sandbox environnment.
+
 
 ### Installation
 
@@ -25,6 +24,15 @@ Requires guzzlehttp/psr7 and psr/http-message . To install, copy-past this in yo
     "require": {
         "openedition/orcid-client":"1.0"
     },
+```
+To apply your credentials do following :
+```sh
+new OrcidConfiguration($yourClientId, $yourClientSecret)
+```
+Note: The endpoints defined in this configuration file are those of the Orcid Api sandbox environnment.
+To change these : 
+```sh
+(new OrcidConfiguration() )->setConfiguration( $yourConfiguration ) ;
 ```
 ## Testing
 To test a "search"  query : php index.php query="your query" ( token="your search session access token" ) . It should output an xml .

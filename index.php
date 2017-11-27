@@ -27,7 +27,11 @@
     
     $logger = new Logger() ;
     
-    $client = new OrcidClient( new OrcidConfiguration() );
+    $clientId = "" ;
+    
+    $clientSecret = "" ;
+    
+    $client = new OrcidClient( new OrcidConfiguration( $clientId, $clientSecret ) );
           
     $sessionRepository = new OrcidSessionRepository() ;
     
@@ -88,6 +92,16 @@
     catch (UnexpectedResponseException $ex) {
             
         $logger->debug( $ex->getMessage() ) ;
+    }
+    catch(\RuntimeException $ex){
+        
+        $logger->debug( $ex->getMessage() ) ;
+        
+    }
+    catch(\Exception $ex){
+        
+        $logger->debug( $ex->getMessage() ) ;
+        
     }
 
        

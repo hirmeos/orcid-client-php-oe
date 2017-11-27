@@ -17,7 +17,7 @@ class OrcidConfiguration
 {
     protected $config ;
       
-    public function __construct()
+    public function __construct($clientId = "",$clientSecret = "")
     {
         
         $this->config = array(
@@ -26,7 +26,19 @@ class OrcidConfiguration
                             "ORCID_URL_SEARCH" => "https://pub.sandbox.orcid.org/v2.0/search",
                             "ORCID_URL_SEARCH_TOKEN" =>  "https://sandbox.orcid.org/oauth/token"
                         );
+        
+        if($clientId !== "" && $clientSecret !== ""){
+            
+            $this->setCredentials($clientId, $clientSecret) ;
+            
+        }
               
+    }
+    
+    public function setCredentials($clientId, $clientSecret)
+    {
+        $this->config["client_id"] = $clientId ;
+        $this->config["client_secret"] = $clientSecret ;
     }
     
     public function getUrlToken()
