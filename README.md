@@ -17,15 +17,23 @@ Requires guzzlehttp/psr7 and psr/http-message . To install, copy-past this in yo
           "url": "https://github.com/hirmeos/orcid-client-php-oe", 
           "type": "git", 
           "reference": "origin/master"
+        },
+        "autoload": {
+                "psr-4": {
+                    "OpenEdition\\OrcidClient\\": "src/"
+                }
         }
       }
     }
   },
     "require": {
+        "php": ">=5.6.29",
+        "guzzlehttp/psr7": "dev-master",
+        "psr/http-message": "dev-master",
         "openedition/orcid-client":"1.0"
     },
 ```
-To apply your credentials do following :
+To apply your credentials do the following :
 ```sh
 new OrcidConfiguration($yourClientId, $yourClientSecret)
 ```
