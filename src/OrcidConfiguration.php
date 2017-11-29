@@ -35,6 +35,11 @@ class OrcidConfiguration
               
     }
     
+    public function setConfiguration($configuration = array() )
+    {
+        $this->config = $configuration ;
+    }
+    
     public function setCredentials($clientId, $clientSecret)
     {
         $this->config["client_id"] = $clientId ;
