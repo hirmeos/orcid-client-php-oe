@@ -28,8 +28,8 @@ Requires guzzlehttp/psr7 and psr/http-message . To install, copy-past this in yo
   },
     "require": {
         "php": ">=5.6.29",
-        "guzzlehttp/psr7": "dev-master",
-        "psr/http-message": "dev-master",
+        "guzzlehttp/psr7": "1.4.2",
+        "psr/http-message": "1.0",
         "openedition/orcid-client":"1.0"
     },
 ```
