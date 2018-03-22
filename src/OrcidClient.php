@@ -11,6 +11,7 @@ namespace OpenEdition\OrcidClient;
 use GuzzleHttp\Psr7\Response ;
 use GuzzleHttp\Psr7\Uri ;
 use Psr\Http\Message\ServerRequestInterface ;
+use GuzzleHttp\Psr7\BufferStream as Stream ;
 
 
 /**
