@@ -18,7 +18,7 @@ class OrcidRecordWorkXml
     const NAMESPACE_WORK = "http://www.orcid.org/ns/work";
     const NAMESPACE_COMMON = "http://www.orcid.org/ns/common";
     const XSD_WORK = "/work-2.0.xsd";
-    private $dom;
+    protected $dom;
     
     public function __construct()
     {
@@ -64,7 +64,7 @@ class OrcidRecordWorkXml
         return $this->dom->saveXML();
     }
     
-    private function appendRootWork()
+    protected function appendRootWork()
     {
         $new = $this->dom->appendChild( $this->dom->createElementNS(self::NAMESPACE_WORK,"work:work") );
         
@@ -78,7 +78,7 @@ class OrcidRecordWorkXml
     }
        
     
-    private function appendTitle(\DOMElement $node, OrcidRecordEntity $document)
+    protected function appendTitle(\DOMElement $node, OrcidRecordEntity $document)
     {
         $workTitle = $node->appendChild( $this->dom->createElementNS(self::NAMESPACE_WORK,"title") );
         
@@ -106,7 +106,7 @@ class OrcidRecordWorkXml
         }   
     }
     
-    private function appendShortDescription(\DOMElement $node, OrcidRecordEntity $document)
+    protected function appendShortDescription(\DOMElement $node, OrcidRecordEntity $document)
     {
         try{
             $cdata = $this->dom->createCDATASection($document->getShortDescription() ) ;
@@ -122,7 +122,7 @@ class OrcidRecordWorkXml
         }        
     }
     
-    private function appendJournalTitle(\DOMElement $node, OrcidRecordEntity $document)
+    protected function appendJournalTitle(\DOMElement $node, OrcidRecordEntity $document)
     {
          try{
              $cdata = $this->dom->createCDATASection($document->getParentTitle() ) ;
@@ -138,7 +138,7 @@ class OrcidRecordWorkXml
     }
     
     
-    private function appendExternalIds(\DOMElement $node, OrcidRecordEntity $document)
+    protected function appendExternalIds(\DOMElement $node, OrcidRecordEntity $document)
     {
         /*********************   COMMON:EXTERNAL-IDS   ***************************/
                 
@@ -184,7 +184,7 @@ class OrcidRecordWorkXml
     }
     
     
-    private function appendPublicationDate(\DOMElement $node, OrcidRecordEntity $document)
+    protected function appendPublicationDate(\DOMElement $node, OrcidRecordEntity $document)
     {
         try{
             
@@ -203,7 +203,7 @@ class OrcidRecordWorkXml
         }
     }
     
-    private function appendExternalId(\DOMElement $node, $type, $value, $relationship)
+    protected function appendExternalId(\DOMElement $node, $type, $value, $relationship)
     {
         $new = $this->dom->createElementNS(self::NAMESPACE_COMMON,"external-id");
                     
@@ -221,7 +221,7 @@ class OrcidRecordWorkXml
     }
     
      
-     private function appendContributors(\DOMElement $node, OrcidRecordEntity $document)
+     protected function appendContributors(\DOMElement $node, OrcidRecordEntity $document)
      {
         
         $new = $node->appendChild( $this->dom->createElementNS(self::NAMESPACE_WORK,"contributors") );
@@ -249,7 +249,7 @@ class OrcidRecordWorkXml
             
      }
      
-     private function appendContributor(\DOMElement $node, $name, $role)
+     protected function appendContributor(\DOMElement $node, $name, $role)
      {
          $new = $this->dom->createElementNS(self::NAMESPACE_WORK, "contributor");
          
