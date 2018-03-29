@@ -102,7 +102,7 @@ class OrcidOutputXmlAdapter
                                                 );
             $commonSubtitle->appendChild($cdata) ;
         } 
-        catch (EmptyFieldException $ex) {
+        catch (\Exception $ex) {
         }   
     }
     
@@ -118,7 +118,7 @@ class OrcidOutputXmlAdapter
             
             $shortDescription->appendChild($cdata) ;
         } 
-        catch (EmptyFieldException $ex) {
+        catch (\Exception $ex) {
         }        
     }
     
@@ -133,7 +133,7 @@ class OrcidOutputXmlAdapter
                                                 );
             $journalTitle->appendChild( $cdata );
         } 
-        catch (EmptyFieldException $ex) {
+        catch (\Exception $ex) {
         } 
     }
     
@@ -155,7 +155,7 @@ class OrcidOutputXmlAdapter
                                                                   "https://doi.org/" .   $document->getDoi()
                                                                 ));
             
-        } catch (EmptyFieldException $ex) {
+        } catch (\Exception $ex) {
 
         }
         
@@ -169,7 +169,7 @@ class OrcidOutputXmlAdapter
             }
             $this->appendExternalId($new, "isbn",  $document->getIsbn(), $relationship) ;
             
-        } catch (EmptyFieldException $ex) {
+        } catch (\Exception $ex) {
 
         }
         
@@ -177,7 +177,7 @@ class OrcidOutputXmlAdapter
             
             $this->appendExternalId($new, "issn",  $document->getIssn(), "part-of" ) ;
             
-        } catch (EmptyFieldException $ex) {
+        } catch (\Exception $ex) {
 
         }
                  
@@ -198,7 +198,7 @@ class OrcidOutputXmlAdapter
             $node->appendChild($new);
             
         } 
-        catch (EmptyFieldException $ex) {
+        catch (\Exception $ex) {
             
         }
     }
@@ -232,7 +232,7 @@ class OrcidOutputXmlAdapter
                 $this->appendContributor($new, $author, "author");
                 
             }
-        } catch (EmptyFieldException $ex) {
+        } catch (\Exception $ex) {
         } 
         
         try{
@@ -244,7 +244,7 @@ class OrcidOutputXmlAdapter
             } 
             
         } 
-        catch (EmptyFieldException $ex) {
+        catch (\Exception $ex) {
         }
             
      }
