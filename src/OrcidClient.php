@@ -58,7 +58,7 @@ class OrcidClient
         
         if($Response->getStatusCode() != StatusCode::OK){
             
-            throw new UnexpectedResponseException( $Response->getBody()->getContents(), $Response->getStatusCode() );
+            throw new OrcidClientException( $Response->getBody()->getContents(), $Response->getStatusCode() );
                 
         }
         
@@ -80,7 +80,7 @@ class OrcidClient
                                     );
         if($Response->getStatusCode() != StatusCode::CREATED){
             
-            throw new UnexpectedResponseException( $Response->getBody()->getContents(), $Response->getStatusCode() );
+            throw new OrcidClientException( $Response->getBody()->getContents(), $Response->getStatusCode() );
                 
         }
         
@@ -102,7 +102,7 @@ class OrcidClient
                                  );
         if($Response->getStatusCode() != StatusCode::OK){
             
-            throw new UnexpectedResponseException( $Response->getBody()->getContents(), $Response->getStatusCode() );
+            throw new OrcidClientException( $Response->getBody()->getContents(), $Response->getStatusCode() );
                 
         }
         
@@ -121,7 +121,7 @@ class OrcidClient
         
         if($Response->getStatusCode() != StatusCode::NO_CONTENT && $Response->getStatusCode() != StatusCode::NOT_FOUND ){
             
-            throw new UnexpectedResponseException( $Response->getBody()->getContents(), $Response->getStatusCode() );
+            throw new OrcidClientException( $Response->getBody()->getContents(), $Response->getStatusCode() );
                 
         }
         
@@ -139,7 +139,7 @@ class OrcidClient
         
         if($Response->getStatusCode() != StatusCode::OK){
             
-            throw new UnexpectedResponseException( $Response->getBody()->getContents(), $Response->getStatusCode() );
+            throw new OrcidClientException( $Response->getBody()->getContents(), $Response->getStatusCode() );
                 
         }
         
@@ -160,7 +160,7 @@ class OrcidClient
                                  );
         if($Response->getStatusCode() != StatusCode::OK){
             
-            throw new UnexpectedResponseException( $Response->getBody()->getContents(), $Response->getStatusCode() );
+            throw new OrcidClientException( $Response->getBody()->getContents(), $Response->getStatusCode() );
                 
         }
         

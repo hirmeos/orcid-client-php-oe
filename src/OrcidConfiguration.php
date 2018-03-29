@@ -15,60 +15,51 @@ namespace OpenEdition\OrcidClient;
  */
 class OrcidConfiguration
 {
-    protected $config ;
-      
-    public function __construct($clientId = "",$clientSecret = "")
-    {
-        
-        $this->config = array(
-                            "ORCID_URL_TOKEN" => "https://pub.sandbox.orcid.org/oauth/token",
-                            "ORCID_URL_RECORD" =>   "https://api.sandbox.orcid.org/v2.0/",
-                            "ORCID_URL_SEARCH" => "https://pub.sandbox.orcid.org/v2.0/search",
-                            "ORCID_URL_SEARCH_TOKEN" =>  "https://sandbox.orcid.org/oauth/token"
-                        );
-        
-        if($clientId !== "" && $clientSecret !== ""){
-            
-            $this->setCredentials($clientId, $clientSecret) ;
-            
-        }
-              
-    }
+    protected $config = [] ;
     
-    public function setConfiguration($configuration = array() )
+    const URL_TOKEN = "urlToken" ;
+    const URL_RECORD = "urlRecord" ;
+    const URL_SEARCH = "urlSearch" ;
+    const URL_SEARCH_TOKEN = "urlSearchToken" ;
+    const CLIENT_ID = "clientId" ;
+    const CLIENT_SECRET = "clientSecret" ;
+      
+    public function __construct(array $config)
     {
-        $this->config = $configuration ;
+        
+        $this->config = $config ;
+              
     }
     
     public function setCredentials($clientId, $clientSecret)
     {
-        $this->config["client_id"] = $clientId ;
-        $this->config["client_secret"] = $clientSecret ;
+        $this->config[self::CLIENT_ID] = $clientId ;
+        $this->config[self::CLIENT_SECRET] = $clientSecret ;
     }
     
     public function getUrlToken()
     {
-        return $this->get('ORCID_URL_TOKEN') ;
+        return $this->get(self::URL_TOKEN) ;
     }
     
     public function getUrlRecord()
     {
-        return $this->get('ORCID_URL_RECORD') ;
+        return $this->get(self::URL_RECORD) ;
     }
     
     public function getClientId()
     {
-        return $this->get('CLIENT_ID') ;
+        return $this->get(self::CLIENT_ID) ;
     }
     
     public function getClientSecret()
     {
-        return $this->get('CLIENT_SECRET') ;
+        return $this->get(self::CLIENT_SECRET) ;
     }
     
     public function getUrlSearch()
     {
-        return $this->get('ORCID_URL_SEARCH') ;
+        return $this->get(self::URL_SEARCH) ;
     }
     
     private function get( $name ){
@@ -85,7 +76,7 @@ class OrcidConfiguration
             
         }
         
-        throw new \RuntimeException("Undefined orcid configuration: " . $name );
+        throw new OrcidClientException("Undefined orcid configuration: " . $name );
         
     }
 }

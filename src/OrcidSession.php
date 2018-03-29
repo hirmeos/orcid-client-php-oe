@@ -35,7 +35,7 @@ class OrcidSession
             return $this->{$name} ;
         }   
         
-        throw new EmptyFieldException ("unset field " . $name ) ;
+        throw new OrcidClientException ("unset field " . $name ) ;
         
     }
     

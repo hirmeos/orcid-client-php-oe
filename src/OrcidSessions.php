@@ -13,7 +13,7 @@ namespace OpenEdition\OrcidClient;
  *
  * @author vinogradov
  */
-class OrcidSessionRepository
+class OrcidSessions
 {
     
     protected $sessions = array();
@@ -30,6 +30,6 @@ class OrcidSessionRepository
             return $this->sessions[$id] ;
         }
         
-        throw new ObjectNotFoundException("no session with id : " . $id) ;
+        throw new OrcidClientException("no session with id : " . $id) ;
     }
 }

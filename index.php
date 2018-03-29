@@ -24,22 +24,17 @@
     }
          
     $query = "orcid" ;
+       
     
-    $logger = new Logger() ;
-    
-    $clientId = "" ;
-    
-    $clientSecret = "" ;
-    
-    $client = new OrcidClient( new OrcidConfiguration( $clientId, $clientSecret ) );
+    $client = new OrcidClient( new OrcidConfiguration( $config ) );
           
-    $sessionRepository = new OrcidSessionRepository() ;
+    $sessions = new OrcidSessions() ;
     
     if(isset($params["token"])){
         
         $searchSession = new OrcidSession( array("access_token" => $params["token"] ) ) ;
     
-        $sessionRepository->save( $searchSession, "search" ) ;
+        $sessions->save( $searchSession, "search" ) ;
     }
     
     if(isset($params["query"])){
@@ -49,59 +44,47 @@
        
     try{
         
-        $token = $sessionRepository->getSession("search")->getToken() ;
+        $token = $sessions->getSession("search")->getToken() ;
         
-        $logger->debug("Requesting Orcid API Search q: " . $query . " token: " . $token);
+        echo("Requesting Orcid API Search q: " . $query . " token: " . $token);
     
         $Response = $client->search($token, $query);
         
         echo $Response->getBody()->getContents() ;
         
         
-    } catch (ObjectNotFoundException $ex) {
+    } catch (OrcidClientException $ex) {
         
               
         try{
             
-            $logger->debug("Requesting Orcid API Get Search Token ...");
+            echo("Requesting Orcid API Get Search Token ...");
             
             $Response = $client->getSearchToken() ;
                         
             $searchSession = (new OrcidInputJsonAdapter( $Response->getBody()->getContents() ) )->getSession() ;
                           
-            $sessionRepository->save($searchSession, "search" ) ;
+            $sessions->save($searchSession, "search" ) ;
             
             $token = $searchSession->getToken() ;
             
-            $logger->debug("Requesting Orcid API Search q: " . $query . " token: " . $token);
+            echo("Requesting Orcid API Search q: " . $query . " token: " . $token);
     
             $Response = $client->search($token, $query);
             
             echo $Response->getBody()->getContents() ;
             
-        } catch (UnexpectedResponseException $ex) {
+        } catch (OrcidClientException $ex) {
             
-            $logger->debug( $ex->getMessage() ) ;
+            echo( $ex->getMessage() ) ;
         }
-        catch (InvalidDataException $ex){
+       
+        
+    }
+    catch (OrcidClientException $ex) {
             
-             $logger->debug( $ex->getMessage() ) ;
-        }
-        
+        echo( $ex->getMessage() ) ;
     }
-    catch (UnexpectedResponseException $ex) {
-            
-        $logger->debug( $ex->getMessage() ) ;
-    }
-    catch(\RuntimeException $ex){
-        
-        $logger->debug( $ex->getMessage() ) ;
-        
-    }
-    catch(\Exception $ex){
-        
-        $logger->debug( $ex->getMessage() ) ;
-        
-    }
+    
 
        

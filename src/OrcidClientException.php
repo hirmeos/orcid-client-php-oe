@@ -9,15 +9,11 @@
 namespace OpenEdition\OrcidClient;
 
 /**
- * Description of Logger
+ * Description of OrcidClientException
  *
- * @author vinogradov
+ * @author vino
  */
-class Logger
+class OrcidClientException extends \Exception
 {
-    
-    public function debug($str)
-    {
-        echo $str ."\n" ;
-    }
+    //put your code here
 }

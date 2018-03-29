@@ -28,7 +28,7 @@ class OrcidInputJsonAdapter
         
         if($this->parsedBody == null){
             
-            throw new InvalidDataException(" failed to decode json: " .$this->body );
+            throw new OrcidClientException(" failed to decode json: " .$this->body );
             
         }
     }
@@ -47,7 +47,7 @@ class OrcidInputJsonAdapter
                 
              $session->__set( $parameter, $this->read( $parameter ) );
                       
-            } catch (InvalidDataException $ex) {
+            } catch (OrcidClientException $ex) {
 
             }     
             
@@ -60,7 +60,7 @@ class OrcidInputJsonAdapter
     {
         if(!isset($this->parsedBody->{$element}) ){
             
-            throw new InvalidDataException(" no element in response: " . $element );
+            throw new OrcidClientException(" no element in response: " . $element );
         }
         
         return $this->parsedBody->{$element} ;

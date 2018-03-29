@@ -9,11 +9,11 @@
 namespace OpenEdition\OrcidClient;
 
 /**
- * Description of OrcidOutputXmlAdapter
+ * Description 
  *
  * @author vinogradov
  */
-class OrcidOutputXmlAdapter
+class OrcidRecordWorkXml
 {
     const NAMESPACE_WORK = "http://www.orcid.org/ns/work";
     const NAMESPACE_COMMON = "http://www.orcid.org/ns/common";
@@ -59,7 +59,7 @@ class OrcidOutputXmlAdapter
     }
     
     
-    public function output()
+    public function __toString()
     {
         return $this->dom->saveXML();
     }
