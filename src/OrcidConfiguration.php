@@ -12,71 +12,28 @@ namespace OpenEdition\OrcidClient;
  * Description of OrcidConfiguration
  *
  * @author vinogradov
+ * 
+ * @property string $urlToken Description
+ * @property string $urlRecord Description
+ * @property string $clientId Description
+ * @property string $clientSecret
  */
 class OrcidConfiguration
-{
-    protected $config = [] ;
+{   
+    public $urlToken;
+    public $urlRecord;
+    public $urlSearch;
+    public $urlSearchToken;
+    public $clientId;
+    public $clientSecret ;
+    public $namespaceWork = "http://www.orcid.org/ns/work";
+    public $namespaceCommon = "http://www.orcid.org/ns/common";
     
-    const URL_TOKEN = "urlToken" ;
-    const URL_RECORD = "urlRecord" ;
-    const URL_SEARCH = "urlSearch" ;
-    const URL_SEARCH_TOKEN = "urlSearchToken" ;
-    const CLIENT_ID = "clientId" ;
-    const CLIENT_SECRET = "clientSecret" ;
-      
-    public function __construct(array $config)
+    public function __construct($config = [])
     {
-        
-        $this->config = $config ;
-              
-    }
-    
-    public function setCredentials($clientId, $clientSecret)
-    {
-        $this->config[self::CLIENT_ID] = $clientId ;
-        $this->config[self::CLIENT_SECRET] = $clientSecret ;
-    }
-    
-    public function getUrlToken()
-    {
-        return $this->get(self::URL_TOKEN) ;
-    }
-    
-    public function getUrlRecord()
-    {
-        return $this->get(self::URL_RECORD) ;
-    }
-    
-    public function getClientId()
-    {
-        return $this->get(self::CLIENT_ID) ;
-    }
-    
-    public function getClientSecret()
-    {
-        return $this->get(self::CLIENT_SECRET) ;
-    }
-    
-    public function getUrlSearch()
-    {
-        return $this->get(self::URL_SEARCH) ;
-    }
-    
-    private function get( $name ){
-        
-        if(isset($this->config[$name]) ){
-            
-            return $this->config[$name] ;
-            
+        foreach($config as $key => $value){           
+            $this->{$key} = $value ;
         }
-        
-        if(isset($this->config[strtolower($name)]) ){
-            
-            return $this->config[strtolower($name)] ;
-            
-        }
-        
-        throw new OrcidClientException("Undefined orcid configuration: " . $name );
-        
     }
+    
 }
